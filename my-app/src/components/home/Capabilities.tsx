@@ -61,6 +61,8 @@ export default function Capabilities() {
               src={card.image}
               alt={card.title}
               fill
+              quality={100}
+              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
               className="object-cover transition-transform duration-700 group-hover:scale-110"
             />
 

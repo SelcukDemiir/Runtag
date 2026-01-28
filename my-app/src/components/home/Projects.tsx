@@ -1,101 +1,194 @@
 "use client";
 
 import { motion } from "framer-motion";
-import SectionWrapper from "./SectionWrapper";
+import Image from "next/image";
 
 const projects = [
   {
-    category: "Game",
+    category: "Oyun",
     name: "Nebula Drift",
-    description:
-      "A small-scope, high-polish arcade prototype built for a weekend jam and iterated into a playable vertical slice.",
-    stack: "Unity · URP · FMOD",
+    description: "Arcade tarzı uzay oyunu prototipi",
+    stack: "Unity · C# · FMOD",
+    image: "https://images.unsplash.com/photo-1538481199705-c710c4e965fc?w=800&q=80",
+    icon: "🎮",
+    stats: "2.4K indirme",
+    date: "2 hafta önce",
   },
   {
     category: "Web",
-    name: "Crewboard",
-    description:
-      "Internal crew dashboard to track sprints, roles and experiment backlogs across multiple projects.",
-    stack: "Next.js · PostgreSQL · Tailwind",
+    name: "Crewboard Dashboard",
+    description: "Ekip yönetim ve sprint takip paneli",
+    stack: "Next.js · PostgreSQL",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=800&q=80",
+    icon: "📊",
+    stats: "1.8K kullanıcı",
+    date: "1 ay önce",
   },
   {
-    category: "AI / Competition",
+    category: "AI",
     name: "Teknofest Control Hub",
-    description:
-      "Control, telemetry and replay tools for a competition team, built under strict deadlines and constraints.",
+    description: "Yarışma telemetri ve kontrol merkezi",
     stack: "Python · FastAPI · React",
+    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80",
+    icon: "🤖",
+    stats: "Finalist",
+    date: "3 ay önce",
   },
   {
-    category: "Hybrid",
-    name: "Playtest Lab",
-    description:
-      "A cross-project toolkit for remote playtesting, survey collection and fast iteration on game balance.",
-    stack: "Next.js · Supabase · Analytics",
+    category: "Mobil",
+    name: "FitTrack Pro",
+    description: "Kişisel fitness ve beslenme takip uygulaması",
+    stack: "React Native · Firebase",
+    image: "https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?w=800&q=80",
+    icon: "📱",
+    stats: "5.2K indirme",
+    date: "1 hafta önce",
+  },
+  {
+    category: "Web",
+    name: "E-Commerce Platform",
+    description: "Modern e-ticaret altyapısı ve yönetim paneli",
+    stack: "Next.js · Stripe · Prisma",
+    image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?w=800&q=80",
+    icon: "🛒",
+    stats: "12K satış",
+    date: "2 ay önce",
+  },
+  {
+    category: "Oyun",
+    name: "Pixel Quest",
+    description: "Retro tarzı platform macera oyunu",
+    stack: "Godot · GDScript",
+    image: "https://images.unsplash.com/photo-1550745165-9bc0b252726f?w=800&q=80",
+    icon: "👾",
+    stats: "890 indirme",
+    date: "5 gün önce",
   },
 ];
 
 export default function Projects() {
   return (
-    <SectionWrapper id="projects" className="relative space-y-10">
-      <div className="pointer-events-none absolute -inset-x-20 top-10 -z-10 h-64 rounded-[40px] bg-[radial-gradient(circle_at_0%_0%,rgba(124,58,237,0.35),transparent_60%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.35),transparent_60%)] opacity-70 blur-3xl" />
+    <section id="projects" className="relative py-20">
+      {/* Background glow */}
+      <div className="pointer-events-none absolute inset-0 -z-10">
+        <div className="absolute left-1/4 top-20 h-[500px] w-[500px] rounded-full bg-purple-500/10 blur-[150px]" />
+        <div className="absolute bottom-20 right-1/4 h-[500px] w-[500px] rounded-full bg-blue-500/10 blur-[150px]" />
+      </div>
 
-      <div className="space-y-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400">
-          Projects
+      {/* Section Header */}
+      <div className="mx-auto max-w-7xl space-y-3 px-4 text-center sm:px-6 lg:px-8">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/50">
+          Projeler
         </p>
-        <h2 className="text-2xl font-semibold uppercase tracking-[0.18em] text-slate-100 sm:text-3xl">
-          Some things we’ve shipped
+        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          Projelerimiz
         </h2>
-        <p className="max-w-2xl text-sm text-slate-300">
-          From student hacks to production-level releases, these are some of our
-          playgrounds.
+        <p className="mx-auto max-w-2xl text-sm text-white/60 sm:text-base">
+          Öğrenci projelerinden prodüksiyon seviyesine, işte bazı çalışmalarımız.
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-2">
-        {projects.map((project, index) => (
-          <motion.article
-            key={project.name}
-            initial={{ opacity: 0, y: 22 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "0px 0px -20% 0px" }}
-            transition={{ duration: 0.55, delay: index * 0.06 }}
-            className="relative flex flex-col justify-between gap-4 overflow-hidden rounded-3xl border border-white/15 bg-gradient-to-br from-white/10 via-white/5 to-white/0 p-[1px] shadow-[0_22px_80px_rgba(15,23,42,0.95)]"
-          >
-            <div className="relative h-full rounded-[22px] bg-gradient-to-br from-slate-950/80 via-slate-900/80 to-slate-950/90 p-5">
-              <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_0%_0%,rgba(124,58,237,0.35),transparent_55%),radial-gradient(circle_at_100%_100%,rgba(56,189,248,0.35),transparent_55%)] opacity-60 mix-blend-screen" />
-              <div className="relative flex h-full flex-col gap-4">
-                <div className="flex items-center justify-between gap-2">
-                  <span className="inline-flex rounded-full bg-slate-900/70 px-3 py-1 text-[10px] uppercase tracking-[0.25em] text-slate-200">
+      {/* Project Grid */}
+      <div className="mx-auto mt-12 max-w-7xl px-4 sm:px-6 lg:px-8">
+        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {projects.map((project, index) => (
+            <motion.article
+              key={project.name}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-50px" }}
+              transition={{ duration: 0.5, delay: index * 0.08 }}
+              className="group cursor-pointer"
+            >
+              {/* Main Card - Fixed Height for Equal Size */}
+              <div className="relative h-[320px] overflow-hidden rounded-[20px] border border-white/[0.15] bg-white/[0.05] shadow-[0_8px_32px_rgba(0,0,0,0.4)] backdrop-blur-xl transition-all duration-500 hover:border-white/[0.25] hover:bg-white/[0.08] hover:shadow-[0_16px_48px_rgba(0,0,0,0.5)]">
+                
+                {/* Inner glow effect */}
+                <div className="pointer-events-none absolute inset-0 rounded-[20px] bg-gradient-to-b from-white/[0.12] via-transparent to-transparent" />
+
+                {/* Background Image - Full card */}
+                <Image
+                  src={project.image}
+                  alt={project.name}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+
+                {/* Dark overlay */}
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-black/20 transition-all duration-300" />
+
+                {/* Light reflection */}
+                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_30%_20%,rgba(255,255,255,0.1)_0%,transparent_50%)]" />
+
+                {/* Category badge - top left */}
+                <div className="absolute left-4 top-4 z-10">
+                  <span className="rounded-xl border border-white/20 bg-black/40 px-3 py-1.5 text-[11px] font-semibold uppercase tracking-wider text-white shadow-[0_2px_8px_rgba(0,0,0,0.3)] backdrop-blur-xl">
                     {project.category}
                   </span>
-                  <a
-                    href="#"
-                    className="text-[10px] uppercase tracking-[0.24em] text-sky-200/80 hover:text-sky-100"
-                  >
-                    View case →
-                  </a>
                 </div>
-                <div className="space-y-2">
-                  <h3 className="text-base font-semibold uppercase tracking-[0.22em] text-slate-100">
-                    {project.name}
-                  </h3>
-                  <p className="text-xs leading-relaxed text-slate-200/90">
-                    {project.description}
-                  </p>
-                </div>
-                <div className="mt-auto flex items-center justify-between gap-2 pt-3 text-[11px] text-slate-300/90">
-                  <span>{project.stack}</span>
-                  <span className="text-[10px] text-slate-400">
-                    Playgrounds · Studio
+
+                {/* Stats badge - top right */}
+                <div className="absolute right-4 top-4 z-10">
+                  <span className="rounded-lg bg-black/50 px-2.5 py-1 text-[11px] font-medium text-white backdrop-blur-sm">
+                    {project.stats}
                   </span>
                 </div>
+
+                {/* Content - Bottom */}
+                <div className="absolute inset-x-0 bottom-0 z-10 p-4">
+                  {/* Project Info */}
+                  <div className="mb-3">
+                    <h3 className="text-lg font-bold text-white drop-shadow-lg">
+                      {project.name}
+                    </h3>
+                    <p className="mt-1 line-clamp-2 text-[13px] text-white/70">
+                      {project.description}
+                    </p>
+                    <p className="mt-2 text-[11px] text-white/50">
+                      {project.stack} • {project.date}
+                    </p>
+                  </div>
+
+                  {/* Hover Buttons - Appear on hover */}
+                  <div className="flex gap-2 opacity-0 transition-all duration-300 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0">
+                    <a
+                      href="#"
+                      className="flex-1 rounded-xl border border-white/20 bg-white/10 py-2.5 text-center text-[12px] font-semibold text-white backdrop-blur-md transition-all duration-200 hover:bg-white/20 hover:border-white/30"
+                    >
+                      Kategoriyi Gör
+                    </a>
+                    <a
+                      href="#"
+                      className="flex-1 rounded-xl border border-pink-500/50 bg-pink-500/20 py-2.5 text-center text-[12px] font-semibold text-white backdrop-blur-md transition-all duration-200 hover:bg-pink-500/30 hover:border-pink-500/70"
+                    >
+                      Detayları Gör
+                    </a>
+                  </div>
+                </div>
+
+                {/* Glass border highlight on hover */}
+                <div className="pointer-events-none absolute inset-0 rounded-[20px] border-2 border-white/0 transition-all duration-300 group-hover:border-white/10" />
               </div>
-            </div>
-          </motion.article>
-        ))}
+            </motion.article>
+          ))}
+        </div>
+
+        {/* View All Button */}
+        <div className="mt-12 flex justify-center">
+          <a
+            href="#"
+            className="group relative overflow-hidden rounded-full border border-white/20 bg-white/[0.08] px-8 py-3.5 text-sm font-medium text-white shadow-[0_4px_16px_rgba(0,0,0,0.3),inset_0_1px_0_rgba(255,255,255,0.1)] backdrop-blur-xl transition-all duration-300 hover:border-white/30 hover:bg-white/[0.12] hover:shadow-[0_8px_24px_rgba(0,0,0,0.4)]"
+          >
+            <span className="relative z-10 flex items-center gap-2">
+              Tüm Projeleri Gör
+              <span className="transition-transform duration-300 group-hover:translate-x-1">
+                →
+              </span>
+            </span>
+            <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/10 to-transparent" />
+          </a>
+        </div>
       </div>
-    </SectionWrapper>
+    </section>
   );
 }
-

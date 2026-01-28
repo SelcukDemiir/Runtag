@@ -75,12 +75,12 @@ export default function Capabilities() {
             {/* Shine effect on hover */}
             <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
 
-            {/* Content */}
-            <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8">
-              <div className="relative z-10 space-y-4">
+            {/* Content - All in one container */}
+            <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
+              <div className="relative z-10">
                 {/* Subtitle chip */}
                 <span
-                  className={`inline-block rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider backdrop-blur-md transition-all duration-300 ${
+                  className={`inline-block rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider backdrop-blur-md ${
                     card.accentColor === "purple"
                       ? "border-purple-400/30 bg-purple-500/20 text-purple-200"
                       : card.accentColor === "blue"
@@ -92,25 +92,27 @@ export default function Capabilities() {
                 </span>
 
                 {/* Title */}
-                <h3 className="text-3xl font-bold tracking-tight text-white drop-shadow-lg sm:text-4xl">
+                <h3 className="mt-3 text-3xl font-bold tracking-tight text-white drop-shadow-lg sm:text-4xl">
                   {card.title}
                 </h3>
 
-                {/* Description - appears on hover */}
-                <p className="max-h-0 overflow-hidden text-sm leading-relaxed text-white/80 transition-all duration-500 group-hover:max-h-24 sm:text-base">
-                  {card.description}
-                </p>
-
-                {/* Tags */}
-                <div className="flex flex-wrap gap-2 pt-2 opacity-0 transition-all duration-500 group-hover:opacity-100">
-                  {card.tags.map((tag) => (
-                    <span
-                      key={tag}
-                      className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-medium text-white/80 backdrop-blur-sm"
-                    >
-                      {tag}
-                    </span>
-                  ))}
+                {/* Description - appears on hover with proper spacing */}
+                <div className="grid grid-rows-[0fr] transition-all duration-500 group-hover:grid-rows-[1fr]">
+                  <div className="overflow-hidden">
+                    <p className="mt-3 text-sm leading-relaxed text-white/80 sm:text-base">
+                      {card.description}
+                    </p>
+                    <div className="mt-3 flex flex-wrap gap-2">
+                      {card.tags.map((tag) => (
+                        <span
+                          key={tag}
+                          className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-medium text-white/80 backdrop-blur-sm"
+                        >
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

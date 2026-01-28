@@ -19,8 +19,9 @@ export default function Home() {
 
       <Navbar />
 
-      <main className="relative z-10 mx-auto flex max-w-6xl flex-col px-4 pb-20 pt-28 sm:px-6 lg:px-8 lg:pt-32">
-        <Hero />
+      <Hero />
+
+      <main className="relative z-10 mx-auto flex max-w-6xl flex-col px-4 pb-20 pt-12 sm:px-6 lg:px-8 lg:pt-16">
         <Capabilities />
         <Crews />
         <Projects />

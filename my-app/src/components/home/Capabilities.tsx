@@ -1,77 +1,132 @@
-import SectionWrapper from "./SectionWrapper";
+"use client";
+
+import Image from "next/image";
 
 const cards = [
   {
-    title: "Game Development",
+    title: "Oyun Geliştirme",
+    subtitle: "Indie Games",
     description:
-      "Indie prototyping, jam games and competition builds across PC, mobile and web.",
-    icon: "🎮",
+      "PC, mobil ve web için indie oyunlar, game jam projeleri ve yarışma yapımları.",
     tags: ["Unity", "Unreal", "Godot", "2D / 3D"],
+    image: "/images/game-dev.png",
+    accentColor: "purple",
   },
   {
-    title: "Web & Platforms",
+    title: "Web & Mobil",
+    subtitle: "Platforms",
     description:
-      "From SaaS dashboards to student products and PoC platforms with real users.",
-    icon: "🖥",
-    tags: ["Next.js", "Django", "FastAPI", "SaaS"],
+      "SaaS panelleri, mobil uygulamalar ve gerçek kullanıcılı PoC platformları.",
+    tags: ["Next.js", "React Native", "Node.js", "SaaS"],
+    image: "/images/web-dev.png",
+    accentColor: "blue",
   },
   {
-    title: "AI & Competitions",
+    title: "AI & Yarışmalar",
+    subtitle: "Competitions",
     description:
-      "Teknofest, global hackathons and AI demos that push ideas into real prototypes.",
-    icon: "🚀",
+      "Teknofest, global hackathonlar ve fikirleri gerçek prototiplere dönüştüren AI demolar.",
     tags: ["ML", "Hackathons", "Teknofest", "PoC"],
+    image: "/images/ai-dev.png",
+    accentColor: "pink",
   },
 ];
 
 export default function Capabilities() {
   return (
-    <SectionWrapper id="capabilities" className="space-y-10">
-      <div className="space-y-3">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-slate-400">
-          Capabilities
+    <section id="capabilities" className="relative py-20">
+      {/* Section Header */}
+      <div className="mx-auto max-w-6xl space-y-3 px-4 text-center sm:px-6 lg:px-8">
+        <p className="text-[11px] font-semibold uppercase tracking-[0.3em] text-white/50">
+          Yetenekler
         </p>
-        <h2 className="text-2xl font-semibold uppercase tracking-[0.18em] text-slate-100 sm:text-3xl">
-          What we build
+        <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl lg:text-5xl">
+          Neler Yapıyoruz
         </h2>
-        <p className="max-w-2xl text-sm text-slate-300">
-          We form small, focused crews around ideas — from indie games to
-          scalable web platforms and competition prototypes.
+        <p className="mx-auto max-w-2xl text-sm text-white/60 sm:text-base">
+          Küçük, odaklı ekipler kurarak fikirler üzerinde çalışıyoruz — indie oyunlardan
+          ölçeklenebilir web platformlarına ve yarışma prototiplere.
         </p>
       </div>
 
-      <div className="grid gap-6 md:grid-cols-3">
+      {/* Netflix-style Cards - Full Width */}
+      <div className="mt-12 grid gap-4 px-4 sm:grid-cols-2 sm:px-6 lg:grid-cols-3 lg:px-8">
         {cards.map((card) => (
           <div
             key={card.title}
-            className="group glass-panel-subtle relative flex flex-col gap-4 border border-white/10 p-5 transition duration-200 hover:-translate-y-1 hover:border-[#7C3AED]/80 hover:shadow-[0_22px_80px_rgba(15,23,42,0.95)]"
+            className="group relative h-[400px] cursor-pointer overflow-hidden rounded-3xl sm:h-[450px] lg:h-[500px]"
           >
-            <div className="absolute inset-x-6 top-0 h-px bg-gradient-to-r from-transparent via-[#7C3AED]/60 to-transparent opacity-0 transition group-hover:opacity-100" />
-            <div className="flex items-center gap-3">
-              <div className="flex h-9 w-9 items-center justify-center rounded-2xl bg-slate-900/70 text-lg">
-                <span>{card.icon}</span>
-              </div>
-              <h3 className="text-sm font-semibold uppercase tracking-[0.24em] text-slate-100">
-                {card.title}
-              </h3>
-            </div>
-            <p className="text-xs leading-relaxed text-slate-300/90">
-              {card.description}
-            </p>
-            <div className="flex flex-wrap gap-2 pt-1">
-              {card.tags.map((tag) => (
+            {/* Background Image */}
+            <Image
+              src={card.image}
+              alt={card.title}
+              fill
+              className="object-cover transition-transform duration-700 group-hover:scale-110"
+            />
+
+            {/* Overlay gradient */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-70 transition-opacity duration-300 group-hover:opacity-80" />
+
+            {/* Glass border overlay */}
+            <div className="absolute inset-0 rounded-3xl border border-white/10 transition-all duration-300 group-hover:border-white/25" />
+
+            {/* Shine effect on hover */}
+            <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/10 to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+
+            {/* Content */}
+            <div className="absolute inset-0 flex flex-col justify-end p-6 sm:p-8">
+              <div className="relative z-10 space-y-4">
+                {/* Subtitle chip */}
                 <span
-                  key={tag}
-                  className="rounded-full border border-white/15 bg-slate-900/70 px-3 py-1 text-[10px] uppercase tracking-[0.22em] text-slate-300/90"
+                  className={`inline-block rounded-full border px-4 py-1.5 text-[11px] font-semibold uppercase tracking-wider backdrop-blur-md transition-all duration-300 ${
+                    card.accentColor === "purple"
+                      ? "border-purple-400/30 bg-purple-500/20 text-purple-200"
+                      : card.accentColor === "blue"
+                      ? "border-blue-400/30 bg-blue-500/20 text-blue-200"
+                      : "border-pink-400/30 bg-pink-500/20 text-pink-200"
+                  }`}
                 >
-                  {tag}
+                  {card.subtitle}
                 </span>
-              ))}
+
+                {/* Title */}
+                <h3 className="text-3xl font-bold tracking-tight text-white drop-shadow-lg sm:text-4xl">
+                  {card.title}
+                </h3>
+
+                {/* Description - appears on hover */}
+                <p className="max-h-0 overflow-hidden text-sm leading-relaxed text-white/80 transition-all duration-500 group-hover:max-h-24 sm:text-base">
+                  {card.description}
+                </p>
+
+                {/* Tags */}
+                <div className="flex flex-wrap gap-2 pt-2 opacity-0 transition-all duration-500 group-hover:opacity-100">
+                  {card.tags.map((tag) => (
+                    <span
+                      key={tag}
+                      className="rounded-full border border-white/20 bg-white/10 px-3 py-1.5 text-[11px] font-medium text-white/80 backdrop-blur-sm"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
             </div>
+
+            {/* Corner glow accent */}
+            <div
+              className={`absolute -right-10 -top-10 h-40 w-40 rounded-full blur-3xl transition-opacity duration-500 ${
+                card.accentColor === "purple"
+                  ? "bg-purple-500/40"
+                  : card.accentColor === "blue"
+                  ? "bg-blue-500/40"
+                  : "bg-pink-500/40"
+              } opacity-0 group-hover:opacity-100`}
+            />
           </div>
         ))}
       </div>
-    </SectionWrapper>
+    </section>
   );
 }
 

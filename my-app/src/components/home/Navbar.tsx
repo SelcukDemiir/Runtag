@@ -4,19 +4,37 @@ import { useEffect, useState } from "react";
 import Image from "next/image";
 
 const navItems = [
-  { label: "Ana Sayfa", href: "#top" },
-  { label: "Hizmetler", href: "#projects" },
-  { label: "Ekip", href: "#crews" },
-  { label: "Hakkımızda", href: "#process" },
-  { label: "İletişim", href: "#join" },
+  { label: "Ana Sayfa", href: "#top", id: "top" },
+  { label: "Hizmetler", href: "#projects", id: "projects" },
+  { label: "Ekip", href: "#crews", id: "crews" },
+  { label: "Hakkımızda", href: "#process", id: "process" },
+  { label: "İletişim", href: "#join", id: "join" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState("top");
 
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 30);
+
+      // Find active section based on scroll position
+      const sections = navItems.map((item) => item.id);
+      let currentSection = "top";
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          // If section top is within viewport upper half
+          if (rect.top <= 150) {
+            currentSection = sectionId;
+          }
+        }
+      }
+
+      setActiveSection(currentSection);
     };
 
     handleScroll();
@@ -59,16 +77,30 @@ export default function Navbar() {
         >
           <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/[0.1] to-transparent" />
           <div className="relative flex items-center gap-1">
-            {navItems.map((item) => (
-              <a
-                key={item.href}
-                href={item.href}
-                className="group relative rounded-full px-4 py-2 text-[13px] font-medium text-white/80 transition-all duration-200 hover:text-white"
-              >
-                <span className="relative z-10">{item.label}</span>
-                <span className="absolute inset-0 rounded-full bg-white/[0.1] opacity-0 transition-opacity duration-200 group-hover:opacity-100" />
-              </a>
-            ))}
+            {navItems.map((item) => {
+              const isActive = activeSection === item.id;
+              return (
+                <a
+                  key={item.href}
+                  href={item.href}
+                  className={`group relative rounded-full px-4 py-2 text-[13px] font-medium transition-all duration-300 ${
+                    isActive
+                      ? "text-white"
+                      : "text-white/70 hover:text-white"
+                  }`}
+                >
+                  <span className="relative z-10">{item.label}</span>
+                  {/* Active state background - like the image */}
+                  <span
+                    className={`absolute inset-0 rounded-full transition-all duration-300 ${
+                      isActive
+                        ? "bg-white/[0.15] shadow-[inset_0_1px_1px_rgba(255,255,255,0.1),0_2px_8px_rgba(0,0,0,0.2)]"
+                        : "bg-white/[0.08] opacity-0 group-hover:opacity-100"
+                    }`}
+                  />
+                </a>
+              );
+            })}
           </div>
         </nav>
 

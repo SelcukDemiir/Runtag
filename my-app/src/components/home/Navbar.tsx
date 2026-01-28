@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 
 const navItems = [
   { label: "Ana Sayfa", href: "#top" },
@@ -34,12 +35,16 @@ export default function Navbar() {
         {/* 1. Logo Section */}
         <a
           href="#top"
-          className={`relative flex items-center gap-2.5 rounded-full px-3 py-2 transition-all duration-500 ${glassStyle}`}
+          className={`relative flex items-center gap-2 rounded-full px-2 py-1.5 transition-all duration-500 ${glassStyle}`}
         >
           <div className="pointer-events-none absolute inset-0 rounded-full bg-gradient-to-b from-white/[0.1] to-transparent" />
-          <div className="relative flex h-8 w-8 items-center justify-center rounded-full bg-gradient-to-br from-pink-500 to-purple-600 text-sm font-bold text-white shadow-[0_2px_10px_rgba(236,72,153,0.4)]">
-            R
-          </div>
+          <Image
+            src="/logo.png"
+            alt="Runtagg Logo"
+            width={36}
+            height={36}
+            className="relative h-9 w-9 object-contain"
+          />
           <div className="relative hidden flex-col pr-1 sm:flex">
             <span className="text-sm font-semibold tracking-tight text-white">
               Runtagg
